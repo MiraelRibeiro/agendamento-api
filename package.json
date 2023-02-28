@@ -1,0 +1,31 @@
+{
+  "name": "agendamento-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "express": "^4.18.2",
+    "js": "^0.1.0",
+    "jsonwebtoken": "^9.0.0",
+    "moment": "^2.29.4",
+    "nodemon": "^2.0.20",
+    "pg": "^8.9.0",
+    "pg-hstore": "^2.3.4",
+    "prettier": "^2.8.4",
+    "sequelize": "^6.28.0",
+    "sucrase": "^3.29.0"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "sequelize-cli": "^6.6.0"
+  }
+}
