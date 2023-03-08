@@ -12,6 +12,9 @@ const routes = new Router();
 routes.post('/sessions', SessionController.store);
 routes.post('/users', UserController.store);
 
+// validar automaticamento o token do usuário
+routes.get('/sessions', authMiddleware, SessionController.index);
+
 routes.use(authMiddleware); // todas as rotas abaixo precisarão desse middleware
 // rotas de usuarios
 routes.get('/users', UserController.index);

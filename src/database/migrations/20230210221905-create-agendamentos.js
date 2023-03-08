@@ -15,16 +15,28 @@ module.exports = {
                 type: Sequelize.STRING(8),
                 allowNull: false,
             },
-            medico: {
+            medicoID: {
                 type: Sequelize.INTEGER,
                 references: { model: 'medicos', key: 'id' },
                 onUpdate: 'CASCADE',
                 onDelete: 'SET NULL',
                 allowNull: false,
             },
-            paciente: {
+            pacienteID: {
                 type: Sequelize.INTEGER,
                 references: { model: 'pacientes', key: 'id' },
+                onUpdate: 'CASCADE',
+                onDelete: 'SET NULL',
+                allowNull: false,
+            },
+            medicoNome: {
+                type: Sequelize.STRING,
+                onUpdate: 'CASCADE',
+                onDelete: 'SET NULL',
+                allowNull: false,
+            },
+            pacienteNome: {
+                type: Sequelize.STRING,
                 onUpdate: 'CASCADE',
                 onDelete: 'SET NULL',
                 allowNull: false,

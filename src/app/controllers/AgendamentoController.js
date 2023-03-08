@@ -13,6 +13,7 @@ class AgendamentoController {
                         [Op.gte]: datahoje, // Op.gte representa ">=" E Op.lte representa "<="
                     },
                 },
+                order: [['data', 'ASC']],
             });
             return response.json(agendamentos);
         } catch (error) {
@@ -24,7 +25,15 @@ class AgendamentoController {
         const { paciente_id } = request.params;
         try {
             const agendamentos = await Agendamento.findAll({
-                attributes: ['id', 'data', 'hora', 'medico', 'paciente'],
+                attributes: [
+                    'id',
+                    'data',
+                    'hora',
+                    'medicoID',
+                    'pacienteID',
+                    'medicoNome',
+                    'pacienteNome',
+                ],
                 where: { paciente: paciente_id },
             });
 
@@ -44,6 +53,15 @@ class AgendamentoController {
 
         try {
             const agendamentos = await Agendamento.findAll({
+                attributes: [
+                    'id',
+                    'data',
+                    'hora',
+                    'medicoID',
+                    'pacienteID',
+                    'medicoNome',
+                    'pacienteNome',
+                ],
                 where: { medico: medico_id },
             });
             if (agendamentos.length <= 0) {

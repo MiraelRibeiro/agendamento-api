@@ -5,6 +5,12 @@ import User from '../models/User';
 import authConfig from '../../config/auth';
 
 class SessionController {
+    async index(request, response) {
+        return response.json({
+            message: 'Validação de token de usuário concluída!',
+        });
+    }
+
     async store(request, response) {
         const { user_name, password } = request.body;
 

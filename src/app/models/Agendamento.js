@@ -7,8 +7,10 @@ class Agendamento extends Model {
             {
                 data: Sequelize.DATEONLY,
                 hora: Sequelize.STRING(8),
-                medico: Sequelize.INTEGER,
-                paciente: Sequelize.INTEGER,
+                medicoID: Sequelize.INTEGER,
+                pacienteID: Sequelize.INTEGER,
+                medicoNome: Sequelize.STRING,
+                pacienteNome: Sequelize.STRING,
             },
             {
                 sequelize,
