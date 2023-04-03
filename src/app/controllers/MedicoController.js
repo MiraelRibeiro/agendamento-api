@@ -30,7 +30,7 @@ class MedicoController {
     async index(request, response) {
         let medicos = null;
         const { nome } = request.body;
-        if (nome != null) {
+        if (nome) {
             try {
                 medicos = await Medico.findAll({
                     where: {
@@ -53,6 +53,34 @@ class MedicoController {
 
         medicos = await Medico.findAll();
         return response.json(medicos);
+    }
+
+    async indexID(request, response) {
+        let medicos = null;
+        const { medico_id } = request.params;
+        // eslint-disable-next-line no-restricted-globals
+        if (!isNaN(medico_id)) {
+            try {
+                medicos = await Medico.findAll({
+                    where: {
+                        id: medico_id,
+                    },
+                });
+
+                if (medicos.length <= 0) {
+                    return response.status(204).json();
+                }
+
+                return response.json(medicos);
+            } catch (error) {
+                return response.status(400).json({
+                    title: 'Erro so buscar dados, verifique o valor do ID.',
+                });
+            }
+        }
+        return response.status(400).json({
+            title: 'Erro so buscar dados, informe o número do ID do médico',
+        });
     }
 
     async update(request, response) {

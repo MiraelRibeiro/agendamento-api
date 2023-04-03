@@ -18,12 +18,14 @@ routes.get('/sessions', authMiddleware, SessionController.index);
 routes.use(authMiddleware); // todas as rotas abaixo precisarão desse middleware
 // rotas de usuarios
 routes.get('/users', UserController.index);
+routes.get('/users/:user_id', UserController.indexID);
 routes.put('/users', UserController.update);
 routes.delete('/users', UserController.delete);
 
 // rotas de medicos
 routes.post('/medicos', MedicoController.store);
 routes.get('/medicos', MedicoController.index);
+routes.get('/medicos/:medico_id', MedicoController.indexID);
 routes.put('/medicos/:medico_id', MedicoController.update);
 routes.delete('/medicos/:medico_id', MedicoController.delete);
 

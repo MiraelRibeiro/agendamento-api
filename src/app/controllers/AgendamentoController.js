@@ -50,6 +50,7 @@ class AgendamentoController {
 
     async indexMedico(request, response) {
         const { medico_id } = request.params;
+        const datahoje = DataAtual;
 
         try {
             const agendamentos = await Agendamento.findAll({
@@ -62,7 +63,13 @@ class AgendamentoController {
                     'medicoNome',
                     'pacienteNome',
                 ],
-                where: { medico: medico_id },
+                where: {
+                    medicoID: medico_id,
+                    data: {
+                        [Op.gte]: datahoje,
+                    },
+                },
+                order: [['data', 'ASC']],
             });
             if (agendamentos.length <= 0) {
                 return response.status(400).json({

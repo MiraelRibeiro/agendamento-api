@@ -10,7 +10,13 @@ class UserController {
         if (nome) {
             try {
                 users = await User.findAll({
-                    attributes: ['id', 'full_name', 'user_name', 'type_user'],
+                    attributes: [
+                        'id',
+                        'full_name',
+                        'user_name',
+                        'type_user',
+                        'medico_id',
+                    ],
                     where: {
                         full_name: {
                             [Op.iLike]: `%${String(nome).toLowerCase()}%`,
@@ -33,11 +39,48 @@ class UserController {
 
         try {
             users = await User.findAll({
-                attributes: ['id', 'full_name', 'user_name', 'type_user'],
+                attributes: [
+                    'id',
+                    'full_name',
+                    'user_name',
+                    'type_user',
+                    'medico_id',
+                ],
             });
             return response.json(users);
         } catch (error) {
             return response.status(400).json({ error });
+        }
+    }
+
+    async indexID(request, response) {
+        let users = null;
+
+        const { user_id } = request.params;
+
+        try {
+            users = await User.findAll({
+                attributes: [
+                    'id',
+                    'full_name',
+                    'user_name',
+                    'type_user',
+                    'medico_id',
+                ],
+                where: {
+                    id: user_id,
+                },
+            });
+
+            if (users.length <= 0) {
+                return response.status(204).json();
+            }
+
+            return response.json(users);
+        } catch (error) {
+            return response.status(400).json({
+                title: 'Erro so buscar dados',
+            });
         }
     }
 
